@@ -49,18 +49,22 @@
 </body>
 </html>
 <script type="text/javascript">
-	$(document).ready(function(){
-		console.log("teste");
 
+	jQuery.extend(jQuery.validator.messages, {
+    	required: "Campo obrigatório.",
+    	rangelength: jQuery.validator.format("Informe um valor entre {0} e {1} caracteres.")
+    });
+
+	$(document).ready(function(){
 		$("#login_form").validate({
 			rules: {
 				username: {
 					required: true,
-					rangelength: [4,20]
+					rangelength: [2,20]
 				},
 				password: {
 					required: true,
-					rangelength: [4,20]
+					rangelength: [5,20]
 				}
 			},
 			submitHandler: function(form) {

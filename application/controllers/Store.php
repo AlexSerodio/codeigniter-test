@@ -6,7 +6,7 @@
 
             $autoload['drivers'] = array('session');
             if(!$this->session->userdata("login")) {
-                redirect('user/login');
+                redirect('user');
             }
 
             $this->load->model('store_model');
