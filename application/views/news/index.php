@@ -7,6 +7,13 @@
 	<body>
 		<div class="container">
 			<h2><?php echo $title; ?></h2>
+
+			<!--<form action="<?php //echo site_url('news/search') ?>" method='post'>-->
+			<?php echo form_open('News/search'); ?>
+				<input type="text" name="search-title">
+				<input type="submit" name="submit" value="Procurar">
+			</form>
+
 			<table id="table" class="table table-striped table-bordered">
 			    <thead>
 			        <tr>
@@ -26,8 +33,8 @@
 			    </tbody>
 			</table>
 			<?php 
-				echo '<label><a href="http://localhost/index.php/news">Cadastrar novo</a></label><br />'; 
-				echo '<label><a href="http://localhost/index.php/pages/logout">Sair</a></label><br />';
+				echo '<label><a href="'.base_url().'index.php/news/create">Cadastrar novo</a></label><br />'; 
+				echo '<label><a href="'.base_url().'index.php/pages/logout">Sair</a></label><br />';
 			?>
 		</div>
 	</body>

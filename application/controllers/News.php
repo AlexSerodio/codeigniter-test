@@ -15,11 +15,20 @@
 
         public function index() {
             $data['news'] = $this->news_model->get_store();
-            $data['title'] = 'News archive';
+            $data['title'] = 'Estabelecimentos Cadastrados';
 
             //$this->load->view('templates/header', $data);
             $this->load->view('news/index', $data);
             //$this->load->view('templates/footer');
+        }
+
+        public function search() {
+            $zipcode = $this->input->post('search-title');
+            $data['news'] = $this->news_model->get_store($zipcode);
+            $data['title'] = 'Estabelecimentos Cadastrados';
+
+            //$this->load->view('templates/header', $data);
+            $this->load->view('news/index', $data);
         }
 
         public function create() {
@@ -53,8 +62,8 @@
 
             $data['title'] = $data['store_item']['name'];
 
-            $this->load->view('templates/header', $data);
+            //$this->load->view('templates/header', $data);
             $this->load->view('news/view', $data);
-            $this->load->view('templates/footer');
+            //$this->load->view('templates/footer');
         }
     }

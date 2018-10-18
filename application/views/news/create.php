@@ -31,7 +31,7 @@
 			</form>
 			<?php
 			echo '<h2>Bem Vindo - ' . $this->session->userdata('login') . '</h2>';
-			echo '<label><a href="http://localhost/index.php/pages/logout">Sair</a></label><br />';
+			echo '<label><a href="'.base_url().'index.php/pages/logout">Sair</a></label><br />';
 			?>
 		</div>
 	</body>

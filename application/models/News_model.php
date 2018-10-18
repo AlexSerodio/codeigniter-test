@@ -4,15 +4,19 @@ class News_model extends CI_Model {
     public function __construct() {
         $this->load->database();
     }
-    
+
     public function get_store($zipcode = FALSE) {
         if ($zipcode === FALSE) {
             $query = $this->db->get('store');
             return $query->result_array();
         }
 
-        $query = $this->db->get_where('store', array('zipcode' => $zipcode));
-        return $query->row_array();
+        $this->db->like('zipcode', $zipcode);
+        $query = $this->db->get('store');
+        return $query->result_array();
+
+        //$query = $this->db->get_where('store', array('zipcode' => $zipcode));
+        //return $query->row_array();
 	}
 
 	public function set_store() {
