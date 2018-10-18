@@ -28,12 +28,12 @@
 				    <input type="text" name="name" class="form-control" />
 				</div>
 				<div class="form-group">
-				    <label for="address">Endereço</label>
-				    <input type="text" name="address" class="form-control" />
-				</div>
-			    <div class="form-group">
 				    <label for="zipcode">CEP</label>
-				    <input type="text" name="zipcode" class="form-control" />
+				    <input type="text" name="zipcode" class="form-control" onblur="pesquisacep(this.value);"/>
+				</div>
+				<div class="form-group">
+				    <label for="address">Endereço</label>
+				    <input type="text" name="address" id="address" class="form-control" />
 				</div>
 				<div class="form-group">
 				    <button type="submit" name="cadastrar" class="btn btn-primary">Cadastrar</button>
@@ -42,10 +42,49 @@
 		</div>
 	</body>
 </html>
+
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		console.log("teste");
-	});	
+<script type="text/javascript">        
+    function pesquisacep(valor) {
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('address').value="...";
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+            } else {
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } else {
+            limpa_formulário_cep();
+        }
+    }
+
+    function limpa_formulário_cep() {
+            document.getElementById('address').value=("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            var address = conteudo.logradouro + ', ' + conteudo.bairro + ', ' + conteudo.localidade + ', ' + conteudo.uf; 
+            document.getElementById('address').value=(address);
+        } else {
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
 </script>

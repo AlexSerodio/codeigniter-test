@@ -21,7 +21,7 @@
 					<div class="col-lg-10">
 						<input type="text" name="search-title" id="search_box" placeholder="Digite um CEP" class="form-control input-md">
 					</div>
-					<button type="submit" name="login" class="btn btn-primary">Procurar</button>
+					<button type="submit" name="search-button" class="btn btn-primary">Procurar</button>
 				</div>
 			</form>
 
