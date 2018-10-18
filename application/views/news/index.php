@@ -8,7 +8,7 @@
 		<div class="container">
 			<h2><?php echo $title; ?></h2>
 
-			<?php echo form_open('News/search'); ?>
+			<?php echo form_open('store/search'); ?>
 				<div class="form-group">
 					<input type="text" name="search-title" id="search_box" class="form-control input-lg typeahead">
 					<input type="submit" name="submit" value="Procurar">
@@ -34,8 +34,8 @@
 			    </tbody>
 			</table>
 			<?php 
-				echo '<label><a href="'.base_url().'index.php/news/create">Cadastrar novo</a></label><br />'; 
-				echo '<label><a href="'.base_url().'index.php/pages/logout">Sair</a></label><br />';
+				echo '<label><a href="'.base_url().'index.php/store/create">Cadastrar novo</a></label><br />'; 
+				echo '<label><a href="'.base_url().'index.php/user/logout">Sair</a></label><br />';
 			?>
 		</div>
 	</body>

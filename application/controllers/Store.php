@@ -1,12 +1,12 @@
 <?php
-    class News extends CI_Controller {
+    class Store extends CI_Controller {
 
         public function __construct() {
             parent::__construct();
 
             $autoload['drivers'] = array('session');
             if(!$this->session->userdata("login")) {
-                redirect('pages/login');
+                redirect('user/login');
             }
 
             $this->load->model('news_model');
@@ -40,10 +40,9 @@
 
             if ($this->form_validation->run() === FALSE) {
                 $this->load->view('news/create');
-
             } else {
                 $this->news_model->set_store();
-                redirect('news');
+                redirect('store');
             }
         }
 

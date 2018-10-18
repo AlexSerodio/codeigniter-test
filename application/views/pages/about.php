@@ -1,1 +1,0 @@
-Primeiro teste utilizando o framework Codeigniter.

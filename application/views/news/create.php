@@ -12,7 +12,7 @@
 
 			<?php 
 				$attributes = array('id' => 'store_form');
-				echo form_open('news/create', $attributes); 
+				echo form_open('store/create', $attributes); 
 			?>
 				<div class="form-group">
 				    <label for="name">Nome</label>
@@ -31,8 +31,8 @@
 			</form>
 			<?php
 			echo '<h2>Bem Vindo - ' . $this->session->userdata('login') . '</h2>';
-			echo '<label><a href="'.base_url().'index.php/news">Lista de Estabelecimentos</a></label><br />'; 
-			echo '<label><a href="'.base_url().'index.php/pages/logout">Sair</a></label><br />';
+			echo '<label><a href="'.base_url().'index.php/store">Lista de Estabelecimentos</a></label><br />'; 
+			echo '<label><a href="'.base_url().'index.php/user/logout">Sair</a></label><br />';
 			?>
 		</div>
 	</body>

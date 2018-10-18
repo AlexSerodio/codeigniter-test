@@ -10,7 +10,7 @@
 	<div class="container">
 		<?php 
 			$attributes = array('id' => 'login_form', 'name' => 'login_form');
-			echo form_open('Pages/login_validation', $attributes); 
+			echo form_open('User/login_validation', $attributes); 
 		?>
 			<div class="form-group">
 				<label for="username">Usuário</label>
