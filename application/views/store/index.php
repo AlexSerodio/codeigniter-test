@@ -6,12 +6,17 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-default">
-
+			<div class="container">
+				<?php 
+					echo '<h2>Bem Vindo - ' . $this->session->userdata('login') . '</h2>';
+					echo '<label><a href="'.base_url().'index.php/store/create">Cadastrar novo</a></label> | '; 
+					echo '<label><a href="'.base_url().'index.php/user/logout">Sair</a></label>';
+				?>
+			</div>
 		</nav>
 		<div class="container">
-			<h2><?php echo $title; ?></h2>
-
 			<?php echo form_open('store/search'); ?>
+				<legend>Estabelecimentos Cadastrados</legend>
 				<div class="form-group">
 					<div class="col-lg-10">
 						<input type="text" name="search-title" id="search_box" placeholder="Digite um CEP" class="form-control input-md">
@@ -29,7 +34,7 @@
 			        </tr>
 			    </thead>
 			    <tbody>
-			        <?php foreach ($news as $store_item): ?>
+			        <?php foreach ($store as $store_item): ?>
 			            <tr>
 				            <td><?php echo $store_item['name']; ?></td>
 				            <td><?php echo $store_item['address']; ?></td>
@@ -38,10 +43,6 @@
 			        <?php endforeach; ?>
 			    </tbody>
 			</table>
-			<?php 
-				echo '<label><a href="'.base_url().'index.php/store/create">Cadastrar novo</a></label><br />'; 
-				echo '<label><a href="'.base_url().'index.php/user/logout">Sair</a></label><br />';
-			?>
 		</div>
 	</body>
 </html>

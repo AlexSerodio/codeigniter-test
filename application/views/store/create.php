@@ -7,36 +7,38 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-default">
-
+			<div class="container">
+				<?php
+					echo '<h2>Bem Vindo - ' . $this->session->userdata('login') . '</h2>';
+					echo '<label><a href="'.base_url().'index.php/store">Lista de Estabelecimentos</a></label> | '; 
+					echo '<label><a href="'.base_url().'index.php/user/logout">Sair</a></label>';
+				?>
+			</div>
 		</nav>
 		<div class="container">
-			<h2>Cadastro de Estabelecimentos Comerciais</h2>
 			<?php echo validation_errors(); ?>
 
 			<?php 
 				$attributes = array('id' => 'store_form');
 				echo form_open('store/create', $attributes); 
 			?>
+				<legend>Cadastro de Novo Estabelecimento Comercial</legend>
 				<div class="form-group">
 				    <label for="name">Nome</label>
-				    <input type="text" name="name" class="form-control" /><br />
-				</div>
-			    <label for="address">Endereço</label>
-			    <input type="text" name="address" class="form-control" /><br />
-
-			    <div class="form-group">
-				    <label for="zipcode">CEP</label>
-				    <input type="text" name="zipcode" class="form-control" /><br />
+				    <input type="text" name="name" class="form-control" />
 				</div>
 				<div class="form-group">
-				    <input type="submit" name="cadastrar" value="Cadastrar" />
+				    <label for="address">Endereço</label>
+				    <input type="text" name="address" class="form-control" />
+				</div>
+			    <div class="form-group">
+				    <label for="zipcode">CEP</label>
+				    <input type="text" name="zipcode" class="form-control" />
+				</div>
+				<div class="form-group">
+				    <button type="submit" name="cadastrar" class="btn btn-primary">Cadastrar</button>
 				</div>
 			</form>
-			<?php
-			echo '<h2>Bem Vindo - ' . $this->session->userdata('login') . '</h2>';
-			echo '<label><a href="'.base_url().'index.php/store">Lista de Estabelecimentos</a></label><br />'; 
-			echo '<label><a href="'.base_url().'index.php/user/logout">Sair</a></label><br />';
-			?>
 		</div>
 	</body>
 </html>

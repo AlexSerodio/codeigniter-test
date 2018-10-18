@@ -8,16 +8,19 @@
 </head>
 <body>
 	<nav class="navbar navbar-default">
-
+		<div class="container">
+			<h1 class="text-center">Sisteminha Feliz :)</h1>
+		</div>
 	</nav>
 	<div class="container">
 		<div class="row-centered">
 			<div class="col-md-5 col-sm-offset-3">
 				<?php 
 					$attributes = array('id' => 'login_form', 'name' => 'login_form', 'class' => 'form-horizontal');
-					echo form_open('User/login_validation', $attributes); 
+					echo form_open('user/login_validation', $attributes); 
 				?>
 					<fieldset>
+						<legend>Entrar</legend>
 						<div class="form-group">
 							<label for="username" class="col-lg-2 control-label">Usuário</label>
 							<div class="col-lg-10">

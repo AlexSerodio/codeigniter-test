@@ -26,8 +26,8 @@ class User extends CI_Controller {
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 
-		$this->load->model('pages_model');
-		if($this->pages_model->can_login($username, $password)) {
+		$this->load->model('user_model');
+		if($this->user_model->can_login($username, $password)) {
 			$this->session->set_userdata("login", $username);
 			redirect('store/');
 		} else {
@@ -38,6 +38,6 @@ class User extends CI_Controller {
 
 	public function logout() {
 		$this->session->unset_userdata("login");
-		redirect('user/login');
+		redirect('user');
 	}
 }
