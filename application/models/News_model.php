@@ -7,27 +7,23 @@ class News_model extends CI_Model {
 
     /* returns the news with the slug field equals the parameter
      * or returns all the news if no parameter is specified.  */
-    public function get_news($slug = FALSE) {
-        if ($slug === FALSE) {
-            $query = $this->db->get('news');
+    public function get_store($zipcode = FALSE) {
+        if ($zipcode === FALSE) {
+            $query = $this->db->get('store');
             return $query->result_array();
         }
 
-        $query = $this->db->get_where('news', array('slug' => $slug));
+        $query = $this->db->get_where('store', array('zipcode' => $zipcode));
         return $query->row_array();
 	}
 
-	public function set_news() {
-	    $this->load->helper('url');
-
-	    $slug = url_title($this->input->post('title'), 'dash', TRUE);
-
+	public function set_store() {
 	    $data = array(
-	        'title' => $this->input->post('title'),
-	        'slug' => $slug,
-	        'text' => $this->input->post('text')
+	        'name' => $this->input->post('name'),
+	        'address' => $this->input->post('address'),
+	        'zipcode' => $this->input->post('zipcode')
 	    );
 
-	    return $this->db->insert('news', $data);
+	    return $this->db->insert('store', $data);
 	}
 }

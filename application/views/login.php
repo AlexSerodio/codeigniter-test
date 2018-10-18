@@ -8,19 +8,18 @@
 <body>
 	<div class="container">
 		<?php echo form_open('Pages/login_validation'); ?>
-		<!--<form method="post" action="<?php //echo base_url() ?>Pages/login_validation">-->
-			<div class="from-group">
-				<label>Usuário</label>
+			<div class="form-group">
+				<label for="username">Usuário</label>
 				<input type="text" name="username" class="form-control" />
 				<span class="text-danger"><?php echo form_error('username'); ?></span>
 			</div>
-			<div class="from-group">
-				<label>Senha</label>
+			<div class="form-group">
+				<label for="password">Senha</label>
 				<input type="password" name="password" class="form-control" />
 				<span class="text-danger"><?php echo form_error('password'); ?></span>
 			</div>
-			<div class="from-group">
-				<input type="submit" name="entrar" value="Entrar" />
+			<div class="form-group">
+				<input type="submit" name="login" value="Entrar" />
 				<?php echo $this->session->flashdata("error"); ?>
 			</div>
 		</form>

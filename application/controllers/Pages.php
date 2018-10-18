@@ -30,8 +30,9 @@ class Pages extends CI_Controller {
 
 			$this->load->model('pages_model');
 			if($this->pages_model->can_login($username, $password)) {
-				$session_data = array('username' => $username);
-				$this->session->set_userdata($session_data);
+				//$session_data = array('username' => $username);
+				//$this->session->set_userdata($session_data);
+				$this->session->set_userdata('username', $username);
 				redirect('pages/enter');
 			} else {
 				$this->session->set_flashdata('error', 'Usuário ou senha inválidos.');
@@ -43,7 +44,7 @@ class Pages extends CI_Controller {
 	}
 
 	public function enter() {
-		if($this->session->userdata('username') != '') {
+		if($this->session->has_userdata('username')) {
 			//echo '<h2>Bem Vindo - ' . $this->session->userdata('username') . '</h2>';
 			//echo '<label><a href="http://localhost/index.php/pages/logout">Sair</a></label>';
 			redirect('news/create');
