@@ -31,6 +31,7 @@
 			</form>
 			<?php
 			echo '<h2>Bem Vindo - ' . $this->session->userdata('login') . '</h2>';
+			echo '<label><a href="'.base_url().'index.php/news">Lista de Estabelecimentos</a></label><br />'; 
 			echo '<label><a href="'.base_url().'index.php/pages/logout">Sair</a></label><br />';
 			?>
 		</div>
@@ -40,6 +41,6 @@
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		console.log("funciona?");
+		console.log("teste");
 	});	
 </script>

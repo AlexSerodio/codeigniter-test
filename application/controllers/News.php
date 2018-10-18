@@ -17,9 +17,7 @@
             $data['news'] = $this->news_model->get_store();
             $data['title'] = 'Estabelecimentos Cadastrados';
 
-            //$this->load->view('templates/header', $data);
             $this->load->view('news/index', $data);
-            //$this->load->view('templates/footer');
         }
 
         public function search() {
@@ -27,7 +25,6 @@
             $data['news'] = $this->news_model->get_store($zipcode);
             $data['title'] = 'Estabelecimentos Cadastrados';
 
-            //$this->load->view('templates/header', $data);
             $this->load->view('news/index', $data);
         }
 
@@ -42,13 +39,10 @@
             $this->form_validation->set_rules('zipcode', 'Zipcode', 'required');
 
             if ($this->form_validation->run() === FALSE) {
-                //$this->load->view('templates/header', $data);
                 $this->load->view('news/create');
-                //$this->load->view('templates/footer');
 
             } else {
                 $this->news_model->set_store();
-                //$this->load->view('news/success');
                 redirect('news');
             }
         }
@@ -61,9 +55,6 @@
             }
 
             $data['title'] = $data['store_item']['name'];
-
-            //$this->load->view('templates/header', $data);
             $this->load->view('news/view', $data);
-            //$this->load->view('templates/footer');
         }
     }

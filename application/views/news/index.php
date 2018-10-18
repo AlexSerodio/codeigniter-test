@@ -8,10 +8,11 @@
 		<div class="container">
 			<h2><?php echo $title; ?></h2>
 
-			<!--<form action="<?php //echo site_url('news/search') ?>" method='post'>-->
 			<?php echo form_open('News/search'); ?>
-				<input type="text" name="search-title">
-				<input type="submit" name="submit" value="Procurar">
+				<div class="form-group">
+					<input type="text" name="search-title" id="search_box" class="form-control input-lg typeahead">
+					<input type="submit" name="submit" value="Procurar">
+				</div>
 			</form>
 
 			<table id="table" class="table table-striped table-bordered">

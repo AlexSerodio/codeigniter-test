@@ -14,9 +14,6 @@ class News_model extends CI_Model {
         $this->db->like('zipcode', $zipcode);
         $query = $this->db->get('store');
         return $query->result_array();
-
-        //$query = $this->db->get_where('store', array('zipcode' => $zipcode));
-        //return $query->row_array();
 	}
 
 	public function set_store() {

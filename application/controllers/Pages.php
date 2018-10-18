@@ -8,10 +8,9 @@ class Pages extends CI_Controller {
 
 	    $data['title'] = ucfirst($page); // Capitalize the first letter
 
-	    // load the views in the order they should be displayed
-	    $this->load->view('templates/header', $data);
+	    //$this->load->view('templates/header', $data);
 	    $this->load->view('pages/'.$page, $data);
-	    $this->load->view('templates/footer', $data);
+	    //$this->load->view('templates/footer', $data);
 	}
 
 	public function login() {
@@ -19,7 +18,7 @@ class Pages extends CI_Controller {
 		$this->load->view('login', $data);
 	}
 
-	public function login_validation() {
+	/*public function login_validation() {
 		$autoload['drivers'] = array('session');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('username', 'Username', 'required');
@@ -39,6 +38,22 @@ class Pages extends CI_Controller {
 			}
 		} else {
 			$this->login();
+		}
+	}*/
+
+	public function login_validation() {
+		$autoload['drivers'] = array('session');
+
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+
+		$this->load->model('pages_model');
+		if($this->pages_model->can_login($username, $password)) {
+			$this->session->set_userdata("login", $username);
+			redirect('news/create');
+		} else {
+			$this->session->set_flashdata('error', 'Usuário ou senha inválidos.');
+			redirect('pages/login');
 		}
 	}
 
