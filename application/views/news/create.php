@@ -6,6 +6,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
+		<nav class="navbar navbar-default">
+
+		</nav>
 		<div class="container">
 			<h2>Cadastro de Estabelecimentos Comerciais</h2>
 			<?php echo validation_errors(); ?>
