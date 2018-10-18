@@ -13,8 +13,10 @@
 
 			<?php echo form_open('store/search'); ?>
 				<div class="form-group">
-					<input type="text" name="search-title" id="search_box" class="form-control input-lg typeahead">
-					<input type="submit" name="submit" value="Procurar">
+					<div class="col-lg-10">
+						<input type="text" name="search-title" id="search_box" placeholder="Digite um CEP" class="form-control input-md">
+					</div>
+					<button type="submit" name="login" class="btn btn-primary">Procurar</button>
 				</div>
 			</form>
 

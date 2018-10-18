@@ -21,14 +21,14 @@
 						<div class="form-group">
 							<label for="username" class="col-lg-2 control-label">Usuário</label>
 							<div class="col-lg-10">
-								<input type="text" name="username" class="form-control" />
+								<input type="text" name="username" placeholder="admin" class="form-control" />
 							</div>
 							<span class="text-danger"><?php echo form_error('username'); ?></span>
 						</div>
 						<div class="form-group">
 							<label for="password" class="col-lg-2 control-label">Senha</label>
 							<div class="col-lg-10">
-								<input type="password" name="password" class="form-control" />
+								<input type="password" name="password" placeholder="admin" class="form-control" />
 							</div>
 							<span class="text-danger"><?php echo form_error('password'); ?></span>
 						</div>
