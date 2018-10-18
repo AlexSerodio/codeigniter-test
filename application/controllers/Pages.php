@@ -13,4 +13,47 @@ class Pages extends CI_Controller {
 	    $this->load->view('pages/'.$page, $data);
 	    $this->load->view('templates/footer', $data);
 	}
+
+	public function login() {
+		$data['title'] = 'Entrar';
+		$this->load->view('login', $data);
+	}
+
+	public function login_validation() {
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		if($this->form_validation->run()) {
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+
+			$this->load->model('pages_model');
+			if($this->pages_model->can_login($username, $password)) {
+				$session_data = array('username' => $username);
+				$this->session->set_userdata($session_data);
+				redirect('pages/enter');
+			} else {
+				$this->session->set_flashdata('error', 'Usuário ou senha inválidos.');
+				redirect('pages/login');
+			}
+		} else {
+			$this->login();
+		}
+	}
+
+	public function enter() {
+		if($this->session->userdata('username') != '') {
+			//echo '<h2>Bem Vindo - ' . $this->session->userdata('username') . '</h2>';
+			//echo '<label><a href="http://localhost/index.php/pages/logout">Sair</a></label>';
+			redirect('news/create');
+		} else {
+			redirect('pages/login');
+		}
+	}
+
+	public function logout() {
+		$this->session->unset_userdata('username');
+		redirect('pages/login');
+	}
 }
