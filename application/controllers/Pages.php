@@ -20,6 +20,7 @@ class Pages extends CI_Controller {
 	}
 
 	public function login_validation() {
+		$autoload['drivers'] = array('session');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('username', 'Username', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
@@ -30,10 +31,8 @@ class Pages extends CI_Controller {
 
 			$this->load->model('pages_model');
 			if($this->pages_model->can_login($username, $password)) {
-				//$session_data = array('username' => $username);
-				//$this->session->set_userdata($session_data);
-				$this->session->set_userdata('username', $username);
-				redirect('pages/enter');
+				$this->session->set_userdata("login", $username);
+				redirect('news/create');
 			} else {
 				$this->session->set_flashdata('error', 'Usuário ou senha inválidos.');
 				redirect('pages/login');
@@ -43,18 +42,8 @@ class Pages extends CI_Controller {
 		}
 	}
 
-	public function enter() {
-		if($this->session->has_userdata('username')) {
-			//echo '<h2>Bem Vindo - ' . $this->session->userdata('username') . '</h2>';
-			//echo '<label><a href="http://localhost/index.php/pages/logout">Sair</a></label>';
-			redirect('news/create');
-		} else {
-			redirect('pages/login');
-		}
-	}
-
 	public function logout() {
-		$this->session->unset_userdata('username');
+		$this->session->unset_userdata("login");
 		redirect('pages/login');
 	}
 }

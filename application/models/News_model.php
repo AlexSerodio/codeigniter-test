@@ -4,9 +4,7 @@ class News_model extends CI_Model {
     public function __construct() {
         $this->load->database();
     }
-
-    /* returns the news with the slug field equals the parameter
-     * or returns all the news if no parameter is specified.  */
+    
     public function get_store($zipcode = FALSE) {
         if ($zipcode === FALSE) {
             $query = $this->db->get('store');
