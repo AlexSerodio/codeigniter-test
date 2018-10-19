@@ -16,33 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `news`
---
-
-DROP TABLE IF EXISTS `news`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `news` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) NOT NULL,
-  `slug` varchar(128) NOT NULL,
-  `text` text NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `news`
---
-
-LOCK TABLES `news` WRITE;
-/*!40000 ALTER TABLE `news` DISABLE KEYS */;
-INSERT INTO `news` VALUES (1,'Novidades','nov','algum texto'),(2,'Meu amigo é um macaco?','macaco','Caso esse amigo ao qual você está se referindo seja seu amigo da escola, então ele é um macaco.'),(3,'Teste do formulario','teste-do-formulario','testandooooo'),(4,'segundo teste','segundo-teste','teste segundo');
-/*!40000 ALTER TABLE `news` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `store`
 --
 
@@ -64,7 +37,7 @@ CREATE TABLE `store` (
 
 LOCK TABLES `store` WRITE;
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` VALUES (1,'primeiro estabelecimento','rua primeiro','2123125'),(2,'nova loja','algum enredeco','11123242'),(3,'mais uma loja','mais um endereco','412425'),(4,'mais uma loja','mais um endereco','412425'),(5,'teste','teste','123');
+INSERT INTO `store` VALUES (1,'FURB - Campus 1','Rua Antônio da Veiga, Itoupava Seca, Blumenau, SC','89030903'),(2,'FURB - Campus 2','Rua São Paulo, Itoupava Seca, Blumenau, SC','89030000'),(3,'FURB - Campus 3','Rua São Paulo, Itoupava Seca, Blumenau, SC','89030001'),(4,'FURB - Campus 5','Rua Samuel Morse, Fortaleza Alta, Blumenau, SC','89058010'),(5,'Monobloco Reparadora','Rua Luíza Lucas, Salto do Norte, Blumenau, SC','89065770');
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,4 +75,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-18 14:58:36
+-- Dump completed on 2018-10-18 20:59:14

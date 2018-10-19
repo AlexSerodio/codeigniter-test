@@ -46,7 +46,7 @@
             }
         }
 
-        public function view($zipcode = NULL) {
+        /*public function view($zipcode = NULL) {
             $data['store_item'] = $this->store_model->get_store($zipcode);
 
             if (empty($data['store_item'])) {
@@ -55,5 +55,5 @@
 
             $data['title'] = $data['store_item']['name'];
             $this->load->view('store/view', $data);
-        }
+        }*/
     }

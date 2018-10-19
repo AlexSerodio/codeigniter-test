@@ -19,11 +19,11 @@
 				<legend>Estabelecimentos Cadastrados</legend>
 				<div class="form-group">
 					<div class="col-lg-10">
-						<input type="text" name="search-title" id="search_box" placeholder="Digite um CEP" class="form-control input-md">
+						<input type="text" name="search-title" placeholder="Digite um CEP" class="form-control input-md">
 					</div>
 					<button type="submit" name="search-button" class="btn btn-primary">Procurar</button>
 				</div>
-			</form>
+			<?php echo form_close(); ?>
 
 			<table id="table" class="table table-striped table-bordered">
 			    <thead>

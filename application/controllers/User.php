@@ -1,7 +1,7 @@
 <?php
 class User extends CI_Controller {
 
-    public function view($page = 'home') {
+    /*public function view($page = 'home') {
 	    if (!file_exists(APPPATH.'views/pages/'.$page.'.php')) {
 	        show_404();
 	    }
@@ -9,7 +9,7 @@ class User extends CI_Controller {
 	    $data['title'] = ucfirst($page);
 
 	    $this->load->view('pages/'.$page, $data);
-	}
+	}*/
 
 	public function index() {
 		$this->login();
