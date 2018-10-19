@@ -3,7 +3,6 @@
 	<head>
 		<title>Cadastrar</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-default">
@@ -29,7 +28,7 @@
 				</div>
 				<div class="form-group">
 				    <label for="zipcode">CEP</label>
-				    <input type="text" name="zipcode" class="form-control" onblur="pesquisacep(this.value);"/>
+				    <input type="text" name="zipcode" class="form-control" onblur="searchZipcode(this.value);"/>
 				</div>
 				<div class="form-group">
 				    <label for="address">Endereço</label>
@@ -42,9 +41,8 @@
 		</div>
 	</body>
 </html>
-
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script type="text/javascript">
 
 	jQuery.validator.addMethod("exactlength", function(value, element, param) {
@@ -79,34 +77,34 @@
 		});
 	});
 
-    function pesquisacep(valor) {
-        var cep = valor.replace(/\D/g, '');
-        if (cep != "") {
-            var validacep = /^[0-9]{8}$/;
+    function searchZipcode(fieldValue) {
+        var zipcode = fieldValue.replace(/\D/g, '');
+        if (zipcode != "") {
+            var validateZipcode = /^[0-9]{8}$/;
 
-            if(validacep.test(cep)) {
+            if(validateZipcode.test(zipcode)) {
                 document.getElementById('address').value="...";
                 var script = document.createElement('script');
-                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+                script.src = 'https://viacep.com.br/ws/'+ zipcode + '/json/?callback=address_callback';
                 document.body.appendChild(script);
             } else {
-                limpa_formulário_cep();
+                clean_zipcode_form();
             }
         } else {
-            limpa_formulário_cep();
+            clean_zipcode_form();
         }
     }
 
-    function limpa_formulário_cep() {
-            document.getElementById('address').value=("");
+    function clean_zipcode_form() {
+        document.getElementById('address').value=("");
     }
 
-    function meu_callback(conteudo) {
-        if (!("erro" in conteudo)) {
-            var address = conteudo.logradouro + ', ' + conteudo.bairro + ', ' + conteudo.localidade + ', ' + conteudo.uf; 
+    function address_callback(callbackData) {
+        if (!("erro" in callbackData)) {
+            var address = callbackData.logradouro + ', ' + callbackData.bairro + ', ' + callbackData.localidade + ', ' + callbackData.uf; 
             document.getElementById('address').value=(address);
         } else {
-            limpa_formulário_cep();
+            clean_zipcode_form();
             alert("CEP não encontrado.");
         }
     }
