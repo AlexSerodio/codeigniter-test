@@ -27,9 +27,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					->set_status_header(400)
 					->set_content_type('application/json')
 					->set_output(json_encode(array('error' => $token)));
-				
-				var_dump($this->input->post());
-				exit;
 			}
 
 			$issuedAt = time();
@@ -49,9 +46,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				->set_status_header(200)
 				->set_content_type('application/json')
 				->set_output(json_encode(array('success' => $token)));
-
-			var_dump($this->input->post());
-			exit;
 		}
 
 		public function logout() {

@@ -1,4 +1,7 @@
 <?php
+
+    require APPPATH . '/libraries/ImplementJWT.php';
+
     class Store extends CI_Controller {
 
         public function __construct() {
@@ -9,6 +12,10 @@
             //if(!$this->session->userdata("login")) {
             //    redirect('user');
             //}
+
+            $this->jwt = new ImplementJWT();
+            $decoded = $this->jwt->decodeToken($data);
+
 
             $this->load->model('store_model');
             $this->load->helper('url_helper');
@@ -30,6 +37,10 @@
         }
 
         public function create() {
+
+            // TODO
+            //$this->input->header();
+
             $this->load->helper('form');
             $this->load->library('form_validation');
 

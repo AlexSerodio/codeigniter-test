@@ -72,7 +72,24 @@
 				}
 			},
 			submitHandler: function(form) {
-				form.submit();
+				$.ajax({
+					url:  $(form).attr('action'),
+					type: 'POST',
+					data: $(form).serialize(),
+					beforeSend: function(request) {
+						$token = localStorage.getItem('token');
+						request.setRequestHeader("token", $token);
+					},
+					success: function(result){
+						localStorage.setItem('token', result['success']);
+						window.location.href = 'store/';
+					},
+					error: function(result) {
+						$('#error-message').text('Usuário ou senha inválido.');
+						$(form).trigger("reset");
+					}
+				});
+				return false;
 			}
 		});
 	});

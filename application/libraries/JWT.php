@@ -36,9 +36,7 @@
 
  */
 
-class JWT
-
-{
+class JWT {
 
 
 

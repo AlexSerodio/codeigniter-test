@@ -34,6 +34,7 @@
 						<div class="form-group">
 							<div class="col-lg-10 col-lg-offset-2">
 								<button type="submit" name="login" id="login" class="btn btn-primary">Entrar</button>
+								<span id='error-message' class='text-danger'></span>
 							</div>
 						</div>
 					</fieldset>
@@ -69,23 +70,20 @@
 					url:  $(form).attr('action'),
 					type: 'POST',
 					data: $(form).serialize(),
+					//beforeSend: function() {
+					//	"<?php  ?>"
+					//},
 					success: function(result){
 						localStorage.setItem('token', result['success']);
-						//sessionStorage.setItem('token', result['success']);
-						console.log("sucesso ajax");
-						console.log(localStorage.getItem('token'));
 						window.location.href = 'store/';
 					},
 					error: function(result) {
-						console.log("erro");
-						console.log(result);
-						alert("Login invalido.");
-						location.reload();
+						$('#error-message').text('Usuário ou senha inválido.');
+						$(form).trigger("reset");
 					}
 				});
 				return false;
 			}
 		});
 	});
-
 </script>
