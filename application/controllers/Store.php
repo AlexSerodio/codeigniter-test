@@ -5,9 +5,10 @@
             parent::__construct();
 
             $autoload['drivers'] = array('session');
-            if(!$this->session->userdata("login")) {
-                redirect('user');
-            }
+            
+            //if(!$this->session->userdata("login")) {
+            //    redirect('user');
+            //}
 
             $this->load->model('store_model');
             $this->load->helper('url_helper');
@@ -47,3 +48,11 @@
         }
     }
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function(){ 
+        console.log(localStorage.getItem('token'));
+    });
+
+</script>

@@ -1,29 +1,57 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+	require APPPATH . '/libraries/ImplementJWT.php';
+
 	class User extends CI_Controller {
 
-		public function index() {
-			$this->login();
+		function __construct() {
+			parent::__construct();
+			$this->jwt = new ImplementJWT();
 		}
 
-		public function login() {
+		public function index() {
 			$data['title'] = 'Entrar';
 			$this->load->view('login', $data);
 		}
 
-		public function login_validation() {
-			$autoload['drivers'] = array('session');
+		function login_validation() {
+			$this->load->model('user_model');
 
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 
-			$this->load->model('user_model');
-			if($this->user_model->can_login($username, $password)) {
-				$this->session->set_userdata("login", $username);
-				redirect('store/');
-			} else {
-				$this->session->set_flashdata('error', 'Usuário ou senha inválidos.');
-				redirect('user/login');
+			$token = array();
+
+			if(!$this->user_model->can_login($username, $password)) {
+				return $this->output
+					->set_status_header(400)
+					->set_content_type('application/json')
+					->set_output(json_encode(array('error' => $token)));
+				
+				var_dump($this->input->post());
+				exit;
 			}
+
+			$issuedAt = time();
+			$data = [
+			    'iat' => $issuedAt,
+			    'nbf' => $issuedAt + 10,
+			    'exp' => $issuedAt + 70,
+			    'data' => [
+					'username' => $username,
+			        'password' => $password,
+			    ]
+			];
+
+			$token = $this->jwt->generateToken($data);
+
+			return $this->output
+				->set_status_header(200)
+				->set_content_type('application/json')
+				->set_output(json_encode(array('success' => $token)));
+
+			var_dump($this->input->post());
+			exit;
 		}
 
 		public function logout() {

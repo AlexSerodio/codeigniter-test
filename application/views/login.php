@@ -13,10 +13,8 @@
 	<div class="container">
 		<div class="row-centered">
 			<div class="col-md-5 col-sm-offset-3">
-				<?php 
-					$attributes = array('id' => 'login_form', 'name' => 'login_form', 'class' => 'form-horizontal');
-					echo form_open('user/login_validation', $attributes); 
-				?>
+
+				<form id="login_form" class="form-horizontal" method="POST" action="<?php echo base_url('user/login_validation'); ?>" >
 					<fieldset>
 						<legend>Entrar</legend>
 						<div class="form-group">
@@ -35,12 +33,11 @@
 						</div>
 						<div class="form-group">
 							<div class="col-lg-10 col-lg-offset-2">
-								<button type="submit" name="login" class="btn btn-primary">Entrar</button> 
-								<?php echo $this->session->flashdata("error"); ?>
+								<button type="submit" name="login" id="login" class="btn btn-primary">Entrar</button>
 							</div>
 						</div>
 					</fieldset>
-				<?php echo form_close(); ?>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -67,9 +64,28 @@
 					rangelength: [5,20]
 				}
 			},
-			submitHandler: function(form) {
-				form.submit();
+			submitHandler: function(form){
+				$.ajax({
+					url:  $(form).attr('action'),
+					type: 'POST',
+					data: $(form).serialize(),
+					success: function(result){
+						localStorage.setItem('token', result['success']);
+						//sessionStorage.setItem('token', result['success']);
+						console.log("sucesso ajax");
+						console.log(localStorage.getItem('token'));
+						window.location.href = 'store/';
+					},
+					error: function(result) {
+						console.log("erro");
+						console.log(result);
+						alert("Login invalido.");
+						location.reload();
+					}
+				});
+				return false;
 			}
 		});
 	});
+
 </script>
