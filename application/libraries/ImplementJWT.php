@@ -12,10 +12,18 @@
 		}
 		
 		public function decodeToken($token) {
-			$decoded = JWT::decode($token, $this->key, array('HS256'));
-			$decodedData = (array) $decoded;
-			return $decodedData;
+			try {
+                $decoded = JWT::decode($token, $this->key, array('HS256'));
+				$decodedData = (array) $decoded;
+				return $decodedData;
+            } catch(Exception $e) {
+				return false;
+            }
 		}
+
+		public function validate_token($token) {
+            
+        } 
 	}
 	
 ?>

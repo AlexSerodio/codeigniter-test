@@ -7,10 +7,8 @@
 	<body>
 		<nav class="navbar navbar-default">
 			<div class="container">
-				<?php 
-					echo '<label><a href="'.base_url().'index.php/store/register">Cadastrar novo</a></label> | '; 
-					echo '<label><a href="'.base_url().'index.php/user/logout">Sair</a></label>';
-				?>
+				<label><a href= <?php echo base_url('index.php/store/create')?>>Cadastrar novo</a></label> | 
+				<label><a class='logout' href=<?php echo base_url('index.php/user/logout') ?>>Sair</a></label>
 			</div>
 		</nav>
 		<div class="container">
@@ -45,3 +43,11 @@
 		</div>
 	</body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("a.logout").click(function() {
+			localStorage.removeItem('token');
+		});
+	});
+</script>

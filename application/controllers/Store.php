@@ -34,26 +34,37 @@
 
         public function create() {
 
-            $token = $this->input->get_request_header("authorization-token");
-
-            // TODO - decode token here
-            echo $token;
-
             $this->load->helper('form');
             $this->load->library('form_validation');
-
-            $data['title'] = 'Adicionar novo estabelecimento comercial';
 
             $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('address', 'Address', 'required');
             $this->form_validation->set_rules('zipcode', 'Zipcode', 'required');
 
             if ($this->form_validation->run() === FALSE) {
-                //$this->load->view('store/create');
+                $this->load->view('store/create');
             } else {
-                $this->store_model->set_store();
-                //redirect('store');
+                $token = $this->input->get_request_header("authorization-token");
+                $decodedToken = $this->jwt->decodeToken($token);
+                
+                if($decodedToken) {
+                    $this->store_model->set_store();
+                    return $this->output->set_status_header(200);
+                } else {
+                    return $this->output->set_status_header(400);
+                }
             }
         }
+
+        // public function validateLogin() {
+        //     $token = $this->input->get_request_header("authorization-token");
+        //     $decodedToken = $this->jwt->decodeToken($token);
+               
+        //     if($decodedToken) {
+        //         return $this->output->set_status_header(200);
+        //     } else {
+        //         return $this->output->set_status_header(400);
+        //     }
+        // }
     }
 ?>

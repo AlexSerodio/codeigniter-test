@@ -7,10 +7,8 @@
 	<body>
 		<nav class="navbar navbar-default">
 			<div class="container">
-				<?php
-					echo '<label><a href="'.base_url().'index.php/store">Lista de Estabelecimentos</a></label> | ';
-					echo '<label><a href="'.base_url().'index.php/user/logout">Sair</a></label>';
-				?>
+				<label><a href= <?php echo base_url('index.php/store') ?>>Lista de Estabelecimentos</a></label> | 
+				<label><a class='logout' href=<?php echo base_url('index.php/user/logout') ?>>Sair</a></label>
 			</div>
 		</nav>
 		<div class="container">
@@ -30,6 +28,7 @@
 				</div>
 				<div class="form-group">
 				    <button type="submit" name="cadastrar" class="btn btn-primary">Cadastrar</button>
+					<span id='error-message' class='text-danger'></span>
 				</div>
 			</form>
 		</div>
@@ -50,6 +49,22 @@
     });
 
 	$(document).ready(function(){
+		// $.ajax({
+		// 	url:  '/codeignitor-test/index.php/user/validateLogin',
+		// 	type: 'POST',
+		// 	headers: { "authorization-token": localStorage.getItem('token') },
+		// 	success: function(result){
+		// 		alert("Está logado");
+		// 	},
+		// 	error: function(result) {
+		// 		window.location.href = '/codeignitor-test/index.php/user';
+		// 	}
+		// });
+
+		$("a.logout").click(function() {
+			localStorage.removeItem('token');
+		});
+
 		$("#store_form").validate({
 			rules: {
 				name: {
@@ -72,12 +87,10 @@
 					data: $(form).serialize(),
 					headers: { "authorization-token": localStorage.getItem('token') },
 					success: function(result){
-						console.log(result);
-						//window.location.href = '/codeignitor-test/index.php/store';
+						window.location.href = '/codeignitor-test/index.php/store';
 					},
 					error: function(result) {
-						console.log("nao funcionou");
-						$('#error-message').text('Usuário ou senha inválido.');
+						$('#error-message').text('Cadastro não efetuado. Logue-se para poder realizar o cadastro.');
 						$(form).trigger("reset");
 					}
 				});

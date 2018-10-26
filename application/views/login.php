@@ -70,9 +70,6 @@
 					url:  $(form).attr('action'),
 					type: 'POST',
 					data: $(form).serialize(),
-					//beforeSend: function() {
-					//	"<?php  ?>"
-					//},
 					success: function(result){
 						localStorage.setItem('token', result['success']);
 						window.location.href = 'store/';

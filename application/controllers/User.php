@@ -49,7 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 
 		public function logout() {
-			$this->session->unset_userdata("login");
+			//localStorage.removeItem('token');
+			//$this->session->unset_userdata("login");
 			redirect('user');
 		}
 	}
