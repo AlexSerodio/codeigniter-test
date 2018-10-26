@@ -8,8 +8,7 @@
 		<nav class="navbar navbar-default">
 			<div class="container">
 				<?php 
-					echo '<h2>Bem Vindo - ' . $this->session->userdata('login') . '</h2>';
-					echo '<label><a href="'.base_url().'index.php/store/create">Cadastrar novo</a></label> | '; 
+					echo '<label><a href="'.base_url().'index.php/store/register">Cadastrar novo</a></label> | '; 
 					echo '<label><a href="'.base_url().'index.php/user/logout">Sair</a></label>';
 				?>
 			</div>

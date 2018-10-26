@@ -7,15 +7,7 @@
         public function __construct() {
             parent::__construct();
 
-            $autoload['drivers'] = array('session');
-            
-            //if(!$this->session->userdata("login")) {
-            //    redirect('user');
-            //}
-
             $this->jwt = new ImplementJWT();
-            $decoded = $this->jwt->decodeToken($data);
-
 
             $this->load->model('store_model');
             $this->load->helper('url_helper');
@@ -28,6 +20,10 @@
             $this->load->view('store/index', $data);
         }
 
+        public function register() {
+            $this->load->view('store/create');
+        }
+
         public function search() {
             $zipcode = $this->input->post('search-title');
             $data['store'] = $this->store_model->get_store($zipcode);
@@ -38,8 +34,10 @@
 
         public function create() {
 
-            // TODO
-            //$this->input->header();
+            $token = $this->input->get_request_header("authorization-token");
+
+            // TODO - decode token here
+            echo $token;
 
             $this->load->helper('form');
             $this->load->library('form_validation');
@@ -51,19 +49,11 @@
             $this->form_validation->set_rules('zipcode', 'Zipcode', 'required');
 
             if ($this->form_validation->run() === FALSE) {
-                $this->load->view('store/create');
+                //$this->load->view('store/create');
             } else {
                 $this->store_model->set_store();
-                redirect('store');
+                //redirect('store');
             }
         }
     }
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-
-    $(document).ready(function(){ 
-        console.log(localStorage.getItem('token'));
-    });
-
-</script>

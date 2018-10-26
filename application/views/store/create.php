@@ -8,19 +8,13 @@
 		<nav class="navbar navbar-default">
 			<div class="container">
 				<?php
-					echo '<h2>Bem Vindo - ' . $this->session->userdata('login') . '</h2>';
 					echo '<label><a href="'.base_url().'index.php/store">Lista de Estabelecimentos</a></label> | ';
 					echo '<label><a href="'.base_url().'index.php/user/logout">Sair</a></label>';
 				?>
 			</div>
 		</nav>
 		<div class="container">
-			<?php echo validation_errors(); ?>
-
-			<?php 
-				$attributes = array('id' => 'store_form');
-				echo form_open('store/create', $attributes); 
-			?>
+			<form id="store_form" method="POST" action="<?php echo base_url('store/create'); ?>" >
 				<legend>Cadastro de Novo Estabelecimento Comercial</legend>
 				<div class="form-group">
 				    <label for="name">Nome</label>
@@ -37,7 +31,7 @@
 				<div class="form-group">
 				    <button type="submit" name="cadastrar" class="btn btn-primary">Cadastrar</button>
 				</div>
-			<?php echo form_close(); ?>
+			</form>
 		</div>
 	</body>
 </html>
@@ -76,15 +70,13 @@
 					url:  $(form).attr('action'),
 					type: 'POST',
 					data: $(form).serialize(),
-					beforeSend: function(request) {
-						$token = localStorage.getItem('token');
-						request.setRequestHeader("token", $token);
-					},
+					headers: { "authorization-token": localStorage.getItem('token') },
 					success: function(result){
-						localStorage.setItem('token', result['success']);
-						window.location.href = 'store/';
+						console.log(result);
+						//window.location.href = '/codeignitor-test/index.php/store';
 					},
 					error: function(result) {
+						console.log("nao funcionou");
 						$('#error-message').text('Usuário ou senha inválido.');
 						$(form).trigger("reset");
 					}
